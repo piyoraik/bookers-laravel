@@ -3,8 +3,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
+      <h3>User Info</h3>
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <td>{{$user->id}}</td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td>{{$user->name}}</td>
+        </tr>
+      </table>
       <h3>New Book</h3>
-      <form action="/book" method="post">
+      <form action="{{ route('books.create') }}" method="post">
         @csrf
         <div class="form-group">
           <label for="title">Title</label>

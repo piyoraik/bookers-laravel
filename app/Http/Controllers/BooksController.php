@@ -17,7 +17,8 @@ class BooksController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('books.index', compact('books'));
+        $user = Auth::user();
+        return view('books.index', compact('books', 'user'));
     }
 
     public function create(Request $request)
@@ -33,7 +34,8 @@ class BooksController extends Controller
     public function show(int $id)
     {
         $book = Book::find($id);
-        return view('books.show', compact('book'));
+        $user = $book->user;
+        return view('books.show', compact('book', 'user'));
     }
 
     public function edit(int $id)
