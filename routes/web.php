@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,12 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 
 Auth::routes();
+
+// Book
+
+Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 
 Route::post('/books', [BooksController::class, 'create'])->name('books.create');
 
@@ -31,3 +35,15 @@ Route::get('/books/{id}/edit', [BooksController::class, 'edit'])->name('books.ed
 Route::post('/books/{id}', [BooksController::class, 'update'])->name('books.update');
 
 Route::post('/books/{id}/delete', [BooksController::class, 'delete'])->name('books.delete');
+
+
+
+
+// User
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+
+Route::get('/users/{id}', [UsersController::class, 'show'])->name('users.show');
+
+Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.edit');
+
+Route::post('/users/{id}', [UsersController::class, 'update'])->name('users.update');

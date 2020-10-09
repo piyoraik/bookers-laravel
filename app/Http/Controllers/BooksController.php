@@ -31,26 +31,30 @@ class BooksController extends Controller
         return redirect(route('books.show', ['id' => $book->id]));
     }
 
-    public function show(int $id)
+    public function show(Request $request)
     {
-        $book = Book::find($id);
+        $book = Book::find($request->id);
         $user = $book->user;
         return view('books.show', compact('book', 'user'));
     }
 
-    public function edit(int $id)
+    public function edit(Request $request)
     {
-        $book = Book::find($id);
+        $book = Book::find($request->id);
+        $user = $book->user;
+        if ($user->id != Auth::id()) {
+            return view('books.show', compact('book', 'user'));
+        }
         return view('books.edit', compact('book'));
     }
 
-    public function update(int $id, Request $request)
+    public function update(Request $request)
     {
-        $book = Book::find($id)->update([
+        $book = Book::find($request->id)->update([
             'title' => $request->title,
             'body'  => $request->body
         ]);
-        return redirect(route('books.show', ['id' => $id]));
+        return redirect(route('books.show', ['id' => $request->id]));
     }
 
     public function delete(int $id)

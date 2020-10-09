@@ -14,6 +14,8 @@
           <td>{{$user->name}}</td>
         </tr>
       </table>
+      <a href="{{ route('users.index') }}" class="btn btn-dark col-md-12">User List</a>
+      <a href="{{ route('books.index') }}" class="btn btn-dark col-md-12 list_up">Book List</a>
       <h3>New Book</h3>
       <form action="{{ route('books.create') }}" method="post">
         @csrf

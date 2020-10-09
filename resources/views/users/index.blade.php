@@ -7,11 +7,11 @@
       <table class="table">
         <tr>
           <th>ID</th>
-          <td>{{$user->id}}</td>
+          <td>{{$current_user->id}}</td>
         </tr>
         <tr>
           <th>Name</th>
-          <td>{{$user->name}}</td>
+          <td>{{$current_user->name}}</td>
         </tr>
       </table>
       <a href="{{ route('users.index') }}" class="btn btn-dark col-md-12">User List</a>
@@ -35,15 +35,15 @@
         <thead>
           <th>ID</th>
           <th>User</th>
-          <th>Title</th>
-          <th>Body</th>
+          <th>Email</th>
         </thead>
-        @foreach ($books as $book)
+        @foreach($users as $user)
         <tr>
-          <td>{{ $book->id }}</td>
-          <td>{{ $book->user->name }}</td>
-          <td><a href="{{ route('books.show', ['id' => $book->id]) }}">{{ $book->title }}</a></td>
-          <td>{{ $book->body }}</td>
+          <td>{{ $user->id }}</td>
+          <td>
+            <a href="{{ route('users.show', ['id' => $user->id]) }}">{{$user->name}}</a>
+          </td>
+          <td>{{ $user->email }}</td>
         </tr>
         @endforeach
       </table>

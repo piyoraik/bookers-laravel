@@ -5,7 +5,7 @@
     <div class="form-group col-md-12">
       <h2>Book Edit</h2>
     </div>
-    <form action="/books/{{ $book->id }}" method="post" class="col-md-12">
+    <form action="{{ route('books.update', ['id' => $book->id]) }}" method="post" class="col-md-12">
       @csrf
       <div class="form-group">
         <label for="title">Title</label>
